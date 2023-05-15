@@ -1,0 +1,27 @@
+Para VSP de 48
+
+interface GigabitEthernet 1/1-1/48
+auto-sense enable
+auto-sense data i-sid 10009
+no shutdown
+exit
+
+ip route 0.0.0.0 0.0.0.0 10.0.0.2 weight 20 preference 1
+
+interface gigabitEthernet 1/49-1/52
+isis
+isis spbm 1 
+isis enable
+no spanning-tree mstp force-port-state enable
+no shutdown
+
+
+Para VSP de 24
+
+interface GigabitEthernet 1/1-1/24
+auto-sense enable
+auto-sense data i-sid 10009
+no shutdown
+exit
+
+ip route 0.0.0.0 0.0.0.0 10.0.0.2 weight 20 preference 1

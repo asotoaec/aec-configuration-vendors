@@ -1,0 +1,15 @@
+** Activar web managment **
+
+Login to switch CLI with rwa access
+Type enable
+Type config term
+Type web-server enable
+
+web-server password rwa admin password
+# insert new password: V0s$2023F*
+
+
+| Default web-server username is admin    |
+| Default web-server password is password |
+
+show web-server
