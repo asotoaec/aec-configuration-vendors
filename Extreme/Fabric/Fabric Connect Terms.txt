@@ -1,0 +1,6 @@
+IEEE L2 Virtualization Technologies
+
+| IEEE 802.1Q  / 1998 / Virtual Lans (VLAN Tagging) 		/ Spanning Tree SMLT	      / 4096 	   / Edge and core 	  |
+| IEEE 802.1ad / 2005 / Provider Bridging (QinQ)  		/ Spanning Tree SMLT 	      / 4096x4096  / Edge and core 	  |
+| IEEE 802.1ah / 2008 / Provider Backbone Bridging (MAC-in-MAC) / Spanning Tree SMLT	      / 16 million / Edge and core 	  |
+| IEEE 802.1aq / 2012 / Shortest Path Bridging (SPBV & SPBM)	/ Link-State-Protocol (IS-IS) / 16 million / Service acccess only |
