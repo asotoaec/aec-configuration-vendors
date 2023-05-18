@@ -1,0 +1,89 @@
+config# snmp-server name VSP8K_BB#1
+
+
+config# inter vlan xx
+  config# ip address x.x.x.x/x
+  config# ex
+config# show ip inter
+config# show vlan basic
+config# sho vlan members
+	
+config# save config
+config# show software
+
+config# show license
+
+config# more config.cfg
+
+
+
+config# vlan ports 1/23,1/24 tagging tagall
+config# mlt 32
+config# mlt 32 encapsulation dot
+config# mlt 32 mem 1/23,1/24
+
+####### Enable SPBM Globally ########
+
+config# show spbm
+config# spbm
+
+####### Add the B-VLANs to the SPBM instance #####
+config# router isis
+config-isis# spbm 1
+config-isis# spbm 1 b-vid 4051, 4052 pri 4051
+
+####### Configure SPBM nickname ######### 
+config-isis# spbm 1 nick-name b.81.00
+
+####### Configure IS-IS system ID #######
+config-isis# system-id 00bb.0801.0000
+
+####### Configure IS-IS Area ########
+config-isis# manual-area 49.0001
+
+####### Show IS-IS Information ######
+config-isis# show isis
+
+####### Create B-VLANs #####
+config# vlan create 4051 type spbm-bvlan
+config# vlan create 4052 type spbm-bvlan
+
+####### Show VLAN information ######
+config# show vlan basic
+config# show vlan mem
+
+####### Configure IS-IS and SPBM into NNI and MLT interfaces #####
+config# inter gigabitEthernet 1/1-1/4,1/21-1/24
+config-if# no spanning-tree mstp force-port-state enable
+are you sure want to continue (y/n) ? Y
+config# ex
+config# inter gigabitEthernet 1/1-1/4,1/21-1/22
+config-if# isis
+config-if# isis spbm 1
+config-if# isis enable
+config-if# no shutdown
+config-if# show isis interface
+config-if# ex
+
+config# inter mlt 32
+config-if# isis
+config-if# isis spbm 1
+config-if# isis enable
+config-if# show mlt 32
+config-if# ex
+config# show isis interface
+config# inter gig 1/23,1/24
+config-if# no shut
+config-if# exit
+
+
+config# interface loopback 1
+config-if# ip address x.x.x.x/32
+config-if# ex
+config# router isis
+config-if# ip-source-address x.x.x.x/32
+config-if# ex
+config# router isis en
+config# show isis
+config# show isis adj
+config# show isis lsdb
